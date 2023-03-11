@@ -1,0 +1,59 @@
+return (
+    <div>
+      <div>
+        <Header totalItems={cart.total_items} />
+      </div>
+      <Switch>
+        <Route path='/'>
+         <Landing
+            exact component={Landing}
+            products={products}
+            PantsProducts={PantsProducts}
+            ShirtProducts={ShirtProducts}
+            GameProducts={GameProducts}
+            onAddToCart={handleAddToCart} />
+        </Route>
+
+        <Route path='/About' component={About}/>
+        <Route path='/FAQ' component={FAQ}/>
+        <Route path='/Store'>
+          <Store  
+            PantsProducts={PantsProducts}
+            ShirtProducts={ShirtProducts}
+            HatProducts={HatProducts}
+            ShortsProducts={ShortsProducts}
+            GameProducts={GameProducts}
+            onAddToCart={handleAddToCart} />
+        </Route>
+        <Route path='/Contact' component={Contact}/>
+
+        <Route path='/Cart'>
+          <Cart 
+            products={products}
+            cart={cart} 
+            handleUpdateCartQty={handleUpdateCartQty}
+            handleRemoveFromCart={handleRemoveFromCart}
+            handleEmptyCart ={handleEmptyCart}
+          />
+        </Route>
+
+        <Route path='/Checkout'>
+          <Checkout 
+            component={cart} 
+            cart={cart}
+            order={order}
+            onCaptureCheckout={handleCaptureCheckout}
+            error={errorMessage}
+            totalItems={cart.total_items}
+          />
+        </Route>
+        <Route path='/MessageSent' component={MessageSent} />
+        <Route path='/Confirmation' component={Confirmation}/>
+
+      </Switch>
+
+      <div>
+        <Footer/>
+      </div>
+    </div>
+  )
